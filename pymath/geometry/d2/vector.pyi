@@ -1,0 +1,39 @@
+from decimal import Decimal
+from typing import overload
+
+from .point import Point
+
+
+class Vector:
+    
+    def __init__(self, x: Decimal | 'Point', y: Decimal = None) -> None: ...
+    
+    def __repr__(self) -> str: ...
+    
+    # attrs
+    @property
+    def x(self) -> Decimal: ...
+    
+    @property
+    def y(self) -> Decimal: ...
+    
+    @property
+    def lenght(self) -> Decimal: ...
+    
+    # methods
+    def normalize(self) -> 'Vector': ...
+    
+    def det(self, other: 'Vector') -> Decimal: ...
+
+    # op
+    def __add__(self, other: 'Vector') -> 'Vector': ...
+    
+    def __sub__(self, other: 'Vector') -> 'Vector': ...
+    
+    @overload
+    def __mul__(self, other: 'Vector') -> Decimal: ...
+    
+    @overload
+    def __mul__(self, other: Decimal) -> 'Vector': ...
+    
+    def __rmul__(self, other: Decimal) -> 'Vector': ...
