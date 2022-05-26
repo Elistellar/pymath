@@ -1,0 +1,17 @@
+LICENSE
+README.md
+setup.py
+pymath/__init__.py
+pymath.egg-info/PKG-INFO
+pymath.egg-info/SOURCES.txt
+pymath.egg-info/dependency_links.txt
+pymath.egg-info/top_level.txt
+pymath/geometry/__init__.py
+pymath/geometry/d2/__init__.py
+pymath/geometry/d2/base_line.py
+pymath/geometry/d2/intersections.py
+pymath/geometry/d2/line.py
+pymath/geometry/d2/point.py
+pymath/geometry/d2/ray.py
+pymath/geometry/d2/segment.py
+pymath/geometry/d2/vector.py

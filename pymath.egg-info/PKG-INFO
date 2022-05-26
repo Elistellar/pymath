@@ -1,15 +1,15 @@
 Metadata-Version: 2.1
-Name: pymath-Elistellar
-Version: 0.0.1.devN
-Summary: A python package adding some math objects
+Name: pymath
+Version: 0.0.1
+Summary: A python lirbary adding some maths objects like lines, segments or polygons.
 Home-page: https://github.com/Elistellar/pymath
 Author: Elistellar
 Author-email: elistellar.contact@gmail.com
-Project-URL: Bug Tracker, https://github.com/Elistellar/pymath/issues
-Classifier: Programming Language :: Python :: 3
+Keywords: math,intersection
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
-Requires-Python: >=3.6
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
