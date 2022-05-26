@@ -1,4 +1,4 @@
-from pymath.geometry.d2.vector import Vector, _det
+from pymath.geometry.d2.vector import Vector, det
 
 
 __all__ = [
@@ -97,7 +97,7 @@ def line_intersect_line(line1, line2):
     """
     Return whether two lines intersect.
     """
-    return _det(line1.vec, line2.vec) != 0 or line2.a in line1
+    return det(line1.vec, line2.vec) != 0 or line2.a in line1
 
 # get intersection
 def get_segment_inter_segment(segment1, segment2):
