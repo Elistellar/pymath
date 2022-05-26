@@ -22,4 +22,4 @@ setup(
     python_requires='>=3.7' # TODO: find the real version instead of a random one
 )
 
-# local install -> pip install .
+# pip install https://github.com/Elistellar/pymath/raw/master/dist/pymath-0.0.1.tar.gz

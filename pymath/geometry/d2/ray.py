@@ -1,4 +1,3 @@
-
 from pymath.geometry.d2.base_line import BaseLine
 from pymath.geometry.d2.intersections import (get_ray_inter_ray,
                                               get_ray_inter_segment,

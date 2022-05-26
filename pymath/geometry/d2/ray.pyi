@@ -1,4 +1,3 @@
-
 from typing import overload
 
 from pymath.geometry.d2.base_line import BaseLine

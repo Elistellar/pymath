@@ -4,7 +4,7 @@ from typing import overload
 from .point import Point
 
 
-def det(v1: 'Vector', v2: 'Vector') -> Decimal: ...
+def _det(v1: 'Vector', v2: 'Vector') -> Decimal: ...
 
 class Vector:
     

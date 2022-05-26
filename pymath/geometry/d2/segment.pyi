@@ -1,9 +1,8 @@
-from typing import overload
 from pymath.geometry.d2.base_line import BaseLine
 from pymath.geometry.d2.line import Line
 from pymath.geometry.d2.point import Point
-from pymath.geometry.d2.segment import Segment
 from pymath.geometry.d2.ray import Ray
+from pymath.geometry.d2.segment import Segment
 
 
 class Segment(BaseLine):
