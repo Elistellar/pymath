@@ -1,3 +1,6 @@
+def det(v1, v2):
+    return v1.x * v2.y - v1.y * v2.x
+
 class Vector:
     
     def __init__(self, x, y = None):

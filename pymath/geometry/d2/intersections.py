@@ -1,4 +1,4 @@
-from pymath.geometry.d2.vector import Vector
+from pymath.geometry.d2.vector import Vector, det
 
 
 __all__ = [
@@ -22,7 +22,7 @@ def segment_intersect_segment(segment1, segment2):
     """
     Return whether two segments intersect.
     """
-    det = segment1.vec.det(segment2.vec)
+    det = det(segment1.vec, segment2.vec)
         
     if det == 0:
         # overlapping
@@ -30,8 +30,8 @@ def segment_intersect_segment(segment1, segment2):
             or segment2.a in segment1 or segment2.b in segment1
         
     else: # secant
-        k1 = segment2.vec.det(Vector(segment1.a - segment2.a)) / det
-        k2 = - segment1.vec.det(Vector(segment2.a - segment1.a)) / det
+        k1 = det(segment2.vec, Vector(segment1.a - segment2.a)) / det
+        k2 = - det(segment1.vec, Vector(segment2.a - segment1.a)) / det
 
         return 0 <= k1 <= 1 and  0 <= k2 <= 1
 
@@ -39,14 +39,14 @@ def ray_intersect_segment(ray, segment):
     """
     Return whether a ray and a segment intersect.
     """
-    det = ray.vec.det(segment.vec)
+    det = det(ray.vec, segment.vec)
     
     if det == 0: # parallel
         return segment.a in ray or segment.b in ray
     
     else:
-        k1 = segment.vec.det(Vector(ray.a - segment.a)) / det
-        k2 = - ray.vec.det(Vector(segment.a - ray.a)) / det
+        k1 = det(segment.vec, Vector(ray.a - segment.a)) / det
+        k2 = - det(ray.vec, Vector(segment.a - ray.a)) / det
 
         return 0 <= k1 <= 1 and 0 < k2
 
@@ -54,14 +54,14 @@ def ray_intersect_ray(ray1, ray2):
     """
     Return whether two rays intersect.
     """
-    det = ray1.vec.det(ray2.vec)
+    det = det(ray1.vec, ray2.vec)
     
     if det == 0: # parallel
         return ray2.a in ray1 or ray2.b in ray1
     
     else:
-        k1 = ray2.vec.det(Vector(ray1.a - ray2.a)) / det
-        k2 = - ray1.vec.det(Vector(ray2.a - ray1.a)) / det
+        k1 = det(ray2.vec, Vector(ray1.a - ray2.a)) / det
+        k2 = - det(ray1.vec, Vector(ray2.a - ray1.a)) / det
 
         return 0 < k1 and 0 < k2
 
@@ -69,13 +69,13 @@ def line_intersect_segment(line, segment):
     """
     Return whether a line and a segment intersect.
     """
-    det = line.vec.det(segment.vec)
+    det = det(line.vec, segment.vec)
         
     if det == 0:
         return segment.a in line
         
     else: # secant
-        k = - line.vec.det(Vector(segment.a - line.a)) / det
+        k = - det(line.vec, Vector(segment.a - line.a)) / det
         
         return 0 <= k <= 1
 
@@ -83,13 +83,13 @@ def line_intersect_ray(line, ray):
     """
     Return whether a line and a ray intersect.
     """
-    det = line.vec.det(ray.vec)
+    det = det(line.vec, ray.vec)
         
     if det == 0:
         return ray.a in line
         
     else: # secant
-        k = - line.vec.det(Vector(ray.a - line.a)) / det
+        k = - det(line.vec, Vector(ray.a - line.a)) / det
         
         return 0 < k
 
@@ -97,14 +97,14 @@ def line_intersect_line(line1, line2):
     """
     Return whether two lines intersect.
     """
-    return line1.vec.det(line2.vec) != 0 or line2.a in line1
+    return det(line1.vec, line2.vec) != 0 or line2.a in line1
 
 # get intersection
 def get_segment_inter_segment(segment1, segment2):
     """
     Return the intersection of two segments.
     """
-    det = segment1.vec.det(segment2.vec)
+    det = det(segment1.vec, segment2.vec)
         
     if det == 0:
         # overlapping
@@ -141,8 +141,8 @@ def get_segment_inter_segment(segment1, segment2):
             return None
         
     else: # secant
-        k1 = segment2.vec.det(Vector(segment1.a - segment2.a)) / det
-        k2 = - segment1.vec.det(Vector(segment2.a - segment1.a)) / det
+        k1 = det(segment2.vec, Vector(segment1.a - segment2.a)) / det
+        k2 = - det(segment1.vec, Vector(segment2.a - segment1.a)) / det
 
         if 0 <= k1 <= 1 and 0 <= k2 <= 1:
             return segment1.a + k1 * segment1.vec
@@ -153,7 +153,7 @@ def get_ray_inter_segment(ray, segment):
     """
     Return the intersection of a ray and a segment.
     """
-    det = ray.vec.det(segment.vec)
+    det = det(ray.vec, segment.vec)
         
     if det == 0:
         # overlapping
@@ -190,8 +190,8 @@ def get_ray_inter_segment(ray, segment):
             return None
         
     else: # secant
-        k1 = segment.vec.det(Vector(ray.a - segment.a)) / det
-        k2 = - ray.vec.det(Vector(segment.a - ray.a)) / det
+        k1 = det(segment.vec, Vector(ray.a - segment.a)) / det
+        k2 = - det(ray.vec, Vector(segment.a - ray.a)) / det
 
         if 0 <= k1 <= 1 and 0 < k2:
             return ray.a + k1 * ray.vec
@@ -202,7 +202,7 @@ def get_ray_inter_ray(ray1, ray2):
     """
     Return the intersection of two rays.
     """
-    det = ray1.vec.det(ray2.vec)
+    det = det(ray1.vec, ray2.vec)
         
     if det == 0:
         # overlapping
@@ -215,8 +215,8 @@ def get_ray_inter_ray(ray1, ray2):
             return None
         
     else: # secant
-        k1 = ray2.vec.det(Vector(ray1.a - ray2.a)) / det
-        k2 = - ray1.vec.det(Vector(ray2.a - ray1.a)) / det
+        k1 = det(ray2.vec, Vector(ray1.a - ray2.a)) / det
+        k2 = - det(ray1.vec, Vector(ray2.a - ray1.a)) / det
 
         if 0 < k1 and 0 < k2:
             return ray1.a + k1 * ray1.vec
@@ -227,7 +227,7 @@ def get_line_inter_segment(line, segment):
     """
     Return the intersection of a line and a segment.
     """
-    det = line.vec.det(segment.vec)
+    det = det(line.vec, segment.vec)
         
     if det == 0:
         # overlapping
@@ -238,7 +238,7 @@ def get_line_inter_segment(line, segment):
             return None
         
     else: # secant
-        k = - line.vec.det(Vector(segment.a - line.a)) / det
+        k = - det(line.vec, Vector(segment.a - line.a)) / det
         
         if 0 <= k <= 1:
             return segment.a + k * segment.vec
@@ -249,7 +249,7 @@ def get_line_inter_ray(line, ray):
     """
     Return the intersection of a line and a ray.
     """
-    det = line.vec.det(ray.vec)
+    det = det(line.vec, ray.vec)
         
     if det == 0:
         # overlapping
@@ -260,7 +260,7 @@ def get_line_inter_ray(line, ray):
             return None
         
     else: # secant
-        k = - line.vec.det(Vector(ray.a - line.a)) / det
+        k = - det(line.vec, Vector(ray.a - line.a)) / det
         
         if 0 < k:
             return ray.a + k * ray.vec
@@ -271,10 +271,10 @@ def get_line_inter_line(line1, line2):
     """
     Return the intersection of two lines.
     """
-    det = line1.vec.det(line2.vec)
+    det = det(line1.vec, line2.vec)
         
     if det != 0:
-        k = - line1.vec.det(Vector(line2.a - line1.a)) / det
+        k = - det(line1.vec, Vector(line2.a - line1.a)) / det
         return line2.a + k * line2.vec
     
     else:

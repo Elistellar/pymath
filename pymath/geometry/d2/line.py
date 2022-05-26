@@ -8,7 +8,7 @@ from pymath.geometry.d2.intersections import (get_line_inter_line,
 from pymath.geometry.d2.point import Point
 from pymath.geometry.d2.ray import Ray
 from pymath.geometry.d2.segment import Segment
-from pymath.geometry.d2.vector import Vector
+from pymath.geometry.d2.vector import Vector, det
 
 __all__ = ['Line']
 
@@ -48,9 +48,9 @@ class Line(BaseLine):
             vec = Vector(self.a - other)
         else:
             vec = other.vec
-        return vec.det(self.vec) == 0
+        return det(vec, self.__vec) == 0
 
     def __eq__(self, other):
-        v1 = self.vec.normalize()
-        v2 = other.vec.normalize()
+        v1 = self.__vec.normalize()
+        v2 = other.__vec.normalize()
         return v1 == v2 or v1 == -1 * v2

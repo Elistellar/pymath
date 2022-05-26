@@ -13,6 +13,7 @@ class BaseLine:
         
         self.a = a
         self.b = b
+        self.__vec = Vector(self.b - self.a)
         
     def __repr__(self):
         return f'{self.__class__.__name__}({self.a}, {self.b})'
@@ -20,15 +21,14 @@ class BaseLine:
     # attrs
     @property
     def vec(self):
-        return Vector(self.b - self.a)
+        return self.__vec
     
     @property
     def slope(self):
-        vec = self.vec
-        if vec.x == 0:
+        if self.__vec.x == 0:
             return Decimal('NaN')
         else:
-            return vec.y / vec.x
+            return self.__vec.y / self.__vec.x
     
     @property
     def intercept(self):

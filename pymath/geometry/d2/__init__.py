@@ -1,5 +1,5 @@
 from .point import Point
-from .vector import Vector
+from .vector import Vector, det
 from .segment import Segment
 from .ray import Ray
 from .line import Line
@@ -10,4 +10,6 @@ __all__ = [
     'Segment',
     'Ray',
     'Line',
+    
+    'det',
 ]

@@ -39,7 +39,7 @@ class Ray(BaseLine):
             return other.a in self and other.b in self
             
         else:
-            s_vec = self.vec
+            s_vec = self.__vec
             o_vec = Vector(other - self.a)
             
             if s_vec.x == 0:
@@ -50,4 +50,4 @@ class Ray(BaseLine):
                 return (k := o_vec.x / s_vec.x) == o_vec.y / s_vec.y and k > 0
     
     def __eq__(self, other):
-        return self.a == other.a and self.vec.normalize() == other.vec.normalize()
+        return self.a == other.a and self.__vec.normalize() == other.__vec.normalize()
