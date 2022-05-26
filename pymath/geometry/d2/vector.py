@@ -45,3 +45,6 @@ class Vector:
     
     def __rmul__(self, other):
         return Vector(self.__x * other, self.__y * other)
+
+    def __eq__(self, other):
+        return self.__x == other.__x and self.__y == other.__y

@@ -1,40 +1,18 @@
-from decimal import Decimal
-
+from pymath.geometry.d2.base_line import BaseLine
 from pymath.geometry.d2.intersections import (get_segment_inter_segment,
                                               segment_intersect_segment)
-from pymath.geometry.d2.vector import Vector
 
 
-class Segment:
+__all__ = ['Segment']
+
+class Segment(BaseLine):
     
     def __init__(self, a, b):
-        self.a = a
-        self.b = b
+        """
+        Represent the segment [A, B].
+        """
+        super().__init__(a, b)
         
-    def __repr__(self):
-        return f'Segment({self.a}, {self.b})'
-    
-    # attrs
-    @property
-    def vec(self):
-        return Vector(self.b - self.a)
-    
-    @property
-    def slope(self):
-        vec = self.vec
-        if vec.x == 0:
-            return Decimal('NaN')
-        else:
-            return vec.y / vec.x
-    
-    @property
-    def intercept(self):
-        slope = self.slope
-        if slope.is_finite():
-            return self.a.y - slope * self.a.x
-        else:
-            return Decimal('NaN')
-    
     # methods
     def intersect(self, other):
         if isinstance(other, Segment):
@@ -50,4 +28,18 @@ class Segment:
     
     # op
     def __contains__(self, other):
-        return Vector(self.a - other).det(self.vec) == 0
+        if isinstance(other, Segment):
+            return other.a in self and other.b in self
+            
+        else:
+            if  min(self.a.x, self.b.x) <= other.x <= max(self.a.x, self.b.x) \
+            and min(self.a.y, self.b.y) <= other.y <= max(self.a.y, self.b.y):
+                if self.slope.is_finite():
+                    return other.y == self.slope * other.x + self.intercept
+                else:
+                    return other.x == self.intercept
+            else:
+                return False
+
+    def __eq__(self, other):
+        return self.a == other.a and self.b == other.b
