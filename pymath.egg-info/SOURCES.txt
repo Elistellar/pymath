@@ -9,6 +9,7 @@ pymath.egg-info/top_level.txt
 pymath/geometry/__init__.py
 pymath/geometry/d2/__init__.py
 pymath/geometry/d2/base_line.py
+pymath/geometry/d2/circle.py
 pymath/geometry/d2/intersections.py
 pymath/geometry/d2/line.py
 pymath/geometry/d2/point.py

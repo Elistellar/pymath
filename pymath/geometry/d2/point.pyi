@@ -1,4 +1,5 @@
 from decimal import Decimal
+from typing import Self
 
 from pymath.geometry.d2.vector import Vector
 
@@ -15,6 +16,15 @@ class Point:
     
     @property
     def y(self) -> Decimal: ...
+
+    # methods
+    def distance(self, other: 'Point') -> Decimal: ...
+    
+    def translate(self, vec: 'Vector') -> Self: ...
+    
+    def rotate(self, center: 'Point', angle: Decimal) -> Self: ...
+    
+    def copy(self) -> 'Point': ...
 
     # op
     def __add__(self, other: 'Point' | 'Vector') -> 'Point': ...

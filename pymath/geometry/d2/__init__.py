@@ -3,6 +3,7 @@ from .vector import Vector, det
 from .segment import Segment
 from .ray import Ray
 from .line import Line
+from .circle import Circle
 
 
 __all__ = [
@@ -11,6 +12,7 @@ __all__ = [
     'Segment',
     'Ray',
     'Line',
+    'Circle',
     
     'det',
 ]

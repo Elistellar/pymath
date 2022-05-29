@@ -6,6 +6,9 @@ from pymath.geometry.d2.vector import Vector
 
 class BaseLine:
     
+    a: 'Point'
+    b: 'Point'
+    
     def __init__(self, a: 'Point', b: 'Point') -> None: ...
         
     def __repr__(self) -> str: ...

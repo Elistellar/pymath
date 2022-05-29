@@ -12,7 +12,12 @@ class Segment(BaseLine):
         Represent the segment [A, B].
         """
         super().__init__(a, b)
-        
+    
+    # attrs
+    @property
+    def length(self):
+        return self.a.distance(self.b)
+    
     # methods
     def intersect(self, other):
         if isinstance(other, Segment):
