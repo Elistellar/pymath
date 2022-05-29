@@ -5,6 +5,7 @@ from pymath.geometry.d2.vector import Vector, det
 
 
 __all__ = [
+    # intersect ?
     'segment_intersect_segment',
     'ray_intersect_segment',
     'ray_intersect_ray',
@@ -16,11 +17,13 @@ __all__ = [
     'circle_intersect_line',
     'circle_intersect_circle',
     
+    # get number of intersections
     'count_cicle_inter_segment',
     'count_cicle_inter_ray',
     'count_cicle_inter_line',
     'count_cicle_inter_circle',
     
+    # get intersection
     'get_segment_inter_segment',
     'get_ray_inter_segment',
     'get_ray_inter_ray',
@@ -122,7 +125,15 @@ def circle_intersect_segment(circle, segment):
     """
     Returns whether a circle and a segment intersect.
     """
-    return NotImplementedError()
+    if segment.a in circle and segment.b in circle:
+        return False
+    
+    u = Vector(circle.center - segment.a)
+    u1 = u.project_on(segment.vec)
+    u2 = u - u1
+    d = u2.lenght
+    
+    return d <= circle.radius
 
 def circle_intersect_ray(circle, ray):
     """
@@ -158,7 +169,24 @@ def count_cicle_inter_segment(circle, segment):
     """
     Returns the number of intersections between a circle and a segment.
     """
-    raise NotImplementedError()
+    if segment.a in circle and segment.b in circle:
+        return Decimal(0)
+    
+    u = Vector(circle.center - segment.a)
+    u1 = u.project_on(segment.vec)
+    u2 = u - u1
+    d = u2.lenght
+    
+    if d <= circle.radius:
+        if segment.a in circle \
+        or segment.b in circle \
+        or d == circle.radius:
+            return Decimal(1)
+        else:
+            return Decimal(2)
+    
+    else:
+        return Decimal(0)
 
 def count_cicle_inter_ray(circle, ray):
     """
@@ -397,21 +425,45 @@ def get_line_inter_line(line1, line2):
 def get_circle_inter_segment(circle, segment):
     """
     Returns the intersection of a circle and a segment.
-    """    
-    return NotImplementedError()
+    """
+    if segment.a in circle and segment.b in circle:
+        return None
+    
+    u = Vector(circle.center - segment.a)
+    u1 = u.project_on(segment.vec)
+    u2 = u - u1
+    d = u2.lenght
+    
+    if d <= circle.radius:
+        m = (circle.radius **2 - u2.square_lenght).sqrt()
+
+        if d == circle.radius:
+            return segment.a + u1
+        
+        if segment.a in circle:
+            return segment.a + u1 + m * segment.vec.normalize()
+        elif segment.b in circle:
+            return segment.a + u1 - m * segment.vec.normalize()
+        else:
+            return (
+                segment.a + u1 + m * segment.vec.normalize(),
+                segment.a + u1 - m * segment.vec.normalize(),
+            )
+    
+    else:
+        return None
 
 def get_circle_inter_ray(circle, ray):
     """
     Returns the intersection of a circle and a ray.
-    """
-        
+    """ 
     u = Vector(circle.center - ray.a)
     u1 = u.project_on(ray.vec)
     u2 = u - u1
     d = u2.lenght
         
     if d <= circle.radius:
-        m = (circle.radius **2 - d**2).sqrt()
+        m = (circle.radius **2 - u2.square_lenght).sqrt()
 
         if d == circle.radius:
             return ray.a + u1

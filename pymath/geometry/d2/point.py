@@ -24,6 +24,9 @@ class Point:
     def distance(self, other):
         return ((self.__x - other.__x)**2 + (self.__y - other.__y)**2).sqrt()
     
+    def square_distance(self, other):
+        return (self.__x - other.__x)**2 + (self.__y - other.__y)**2
+    
     def translate(self, vec):
         self.__x += vec.x
         self.__y += vec.y

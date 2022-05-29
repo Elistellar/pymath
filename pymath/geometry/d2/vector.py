@@ -1,4 +1,5 @@
 from math import acos
+from decimal import getcontext
 
 
 def det(v1, v2):
@@ -26,7 +27,7 @@ class Vector:
         return self.__y
     
     @property
-    def lenght(self):
+    def lenght(self):        
         return (self.__x ** 2 + self.__y ** 2).sqrt()
     
     @property
@@ -35,7 +36,10 @@ class Vector:
     
     # methods
     def normalize(self):
-        return 1 / self.lenght * self
+        getcontext().prec += 2
+        m = 1 / self.lenght
+        getcontext().prec -= 2
+        return m * self
     
     def det(self, other):
         return self.__x * other.__y - self.__y * other.__x
@@ -44,7 +48,10 @@ class Vector:
         """
         Returns the angle (self; other)
         """
-        return acos(self * other / (self.lenght_square * other.lenght_square).sqrt())
+        getcontext().prec += 2
+        a = acos(self * other / (self.lenght_square * other.lenght_square).sqrt())
+        getcontext().prec -= 2
+        return a
 
     def project_on(self, other):
         """

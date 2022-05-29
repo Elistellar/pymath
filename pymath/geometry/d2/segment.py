@@ -18,6 +18,10 @@ class Segment(BaseLine):
     def length(self):
         return self.a.distance(self.b)
     
+    @property
+    def square_lenght(self):
+        return self.a.square_distance(self.b)
+    
     # methods
     def intersect(self, other):
         if isinstance(other, Segment):

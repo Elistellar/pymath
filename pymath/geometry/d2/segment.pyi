@@ -14,6 +14,9 @@ class Segment(BaseLine):
     @property
     def length(self) -> Decimal: ...
     
+    @property
+    def square_lenght(self) -> Decimal: ...
+    
     # methods
     def intersect(self, other: 'Segment' | 'Ray' | 'Line') -> bool: ...
     

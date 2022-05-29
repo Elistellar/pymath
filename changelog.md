@@ -2,11 +2,13 @@
 
 #### Segment class:
 - properties:
-    - lenght 
+    - lenght
+    - square_lenght
 
 #### Point class
 - methods:
     - distance
+    - square_distance
     - translate
     - rotate
     - copy
