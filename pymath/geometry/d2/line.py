@@ -14,13 +14,7 @@ from pymath.geometry.d2.vector import Vector, det
 __all__ = ['Line']
 
 class Line(BaseLine):
-    
-    def __init__(self, a, b):
-        """
-        Represent the line (A, B).
-        """
-        super().__init__(a, b)
-    
+        
     # methods
     def intersect(self, other):
         if isinstance(other, Segment):

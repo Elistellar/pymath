@@ -7,14 +7,10 @@ from pymath.geometry.d2.segment import Segment
 from pymath.geometry.d2.vector import Vector
 
 
+__all__ = ['Ray']
+
 class Ray(BaseLine):
     
-    def __init__(self, a, b):
-        """
-        Represent the ray [A, B).
-        """
-        super().__init__(a, b)
-
     # methods
     def intersect(self, other):
         if isinstance(other, Segment):

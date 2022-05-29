@@ -2,6 +2,8 @@ from decimal import Decimal, getcontext
 from math import cos, sin
 
 
+__all__ = ['Point']
+
 class Point:
     
     def __init__(self, x, y):
@@ -33,9 +35,6 @@ class Point:
         return self
         
     def rotate(self, center, angle):
-        """
-        Rotates the point counterclockwise around 'center' by 'angle' radians.
-        """
         c = Decimal(round(cos(angle), getcontext().prec))
         s = Decimal(round(sin(angle), getcontext().prec))
         

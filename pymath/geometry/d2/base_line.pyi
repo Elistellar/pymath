@@ -15,7 +15,10 @@ class BaseLine:
     
     # attrs
     @property
-    def vec(self) -> 'Vector': ...
+    def vec(self) -> 'Vector':
+        """
+        The vector from A to B.
+        """
     
     @property
     def slope(self) -> Decimal: ...
@@ -24,4 +27,6 @@ class BaseLine:
     def intercept(self) -> Decimal: ...
 
     # methods
+    def translate(self, vec: 'Vector') -> 'BaseLine': ...
+    
     def copy(self) -> 'BaseLine': ...

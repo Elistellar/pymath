@@ -27,16 +27,33 @@ class Vector:
     def lenght(self) -> Decimal: ...
     
     @property
+    def magnitude(self) -> Decimal: ...
+    
+    @property
     def square_lenght(self) -> Decimal: ...
     
     # methods
-    def normalize(self) -> 'Vector': ...
+    def normalize(self) -> 'Vector':
+        """
+        Returns another vector with the same direction, but with a lenght of 1.
+        """
     
     def det(self, other: 'Vector') -> Decimal: ...
 
-    def angle(self, other: 'Vector') -> Decimal: ...
+    def angle(self, other: 'Vector') -> Decimal:
+        """
+        Returns the angle (self; other)
+        """
 
-    def project_on(self, other: 'Vector') -> 'Vector': ...
+    def project_on(self, other: 'Vector') -> 'Vector':
+        """
+        Returns the projection of self onto other
+        """
+
+    def rotate(self, angle: Decimal) -> 'Vector':
+        """
+        Rotates the vector counterclockwise by 'angle' radians.
+        """
 
     def copy(self) -> 'Vector': ...
 

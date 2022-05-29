@@ -1,6 +1,10 @@
+from decimal import Decimal, getcontext
 from math import acos
-from decimal import getcontext
 
+from pymath.geometry.d2.point import Point
+
+
+__all__ = ['Vector', 'det']
 
 def det(v1, v2):
     return v1.x * v2.y - v1.y * v2.x
@@ -27,7 +31,11 @@ class Vector:
         return self.__y
     
     @property
-    def lenght(self):        
+    def lenght(self):
+        return (self.__x ** 2 + self.__y ** 2).sqrt()
+    
+    @property
+    def magnitude(self):        
         return (self.__x ** 2 + self.__y ** 2).sqrt()
     
     @property
@@ -45,19 +53,19 @@ class Vector:
         return self.__x * other.__y - self.__y * other.__x
     
     def angle(self, other):
-        """
-        Returns the angle (self; other)
-        """
         getcontext().prec += 2
         a = acos(self * other / (self.lenght_square * other.lenght_square).sqrt())
         getcontext().prec -= 2
         return a
 
     def project_on(self, other):
-        """
-        Returns the projection of self onto other
-        """
         return (self * other) / other.square_lenght * other
+    
+    def rotate(self, angle):
+        p = Point(self.__x, self.__y)
+        p.rotate(Point(Decimal(0), Decimal(0)), angle)
+        self.__x, self.__y = p.x, p.y
+        return self
     
     def copy(self):
         return Vector(self.__x, self.__y)

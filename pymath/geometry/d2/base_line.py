@@ -9,11 +9,10 @@ class BaseLine:
     
     def __init__(self, a, b):
         if a == b:
-            raise ValueError(f'Cannon create a {self.__class__.__name__.lower()} with 2 identical points.')
+            raise ValueError(f'Cannot create a {self.__class__.__name__.lower()} with 2 identical points.')
         
         self.a = a
         self.b = b
-        self.__vec = Vector(self.b - self.a)
         
     def __repr__(self):
         return f'{self.__class__.__name__}({self.a}, {self.b})'
@@ -21,14 +20,15 @@ class BaseLine:
     # attrs
     @property
     def vec(self):
-        return self.__vec
+        return Vector(self.b - self.a)
     
     @property
     def slope(self):
-        if self.__vec.x == 0:
+        vec = self.vec
+        if vec.x == 0:
             return Decimal('NaN')
         else:
-            return self.__vec.y / self.__vec.x
+            return vec.y / vec.x
     
     @property
     def intercept(self):
@@ -39,5 +39,10 @@ class BaseLine:
             return Decimal('NaN')
         
     # methods
+    def translate(self, vec):
+        self.a.translate(vec)
+        self.b.translate(vec)
+        return self
+    
     def copy(self):
         return self.__class__(self.a, self.b)

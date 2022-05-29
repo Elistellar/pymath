@@ -41,9 +41,7 @@ def sgn(d):
 
 # intersect ?
 def segment_intersect_segment(segment1, segment2):
-    """
-    Returns whether two segments intersect.
-    """
+    
     det = det(segment1.vec, segment2.vec)
         
     if det == 0:
@@ -58,9 +56,7 @@ def segment_intersect_segment(segment1, segment2):
         return 0 <= k1 <= 1 and 0 <= k2 <= 1
 
 def ray_intersect_segment(ray, segment):
-    """
-    Returns whether a ray and a segment intersect.
-    """
+    
     det = det(ray.vec, segment.vec)
     
     if det == 0: # parallel
@@ -73,9 +69,7 @@ def ray_intersect_segment(ray, segment):
         return 0 <= k1 <= 1 and 0 < k2
 
 def ray_intersect_ray(ray1, ray2):
-    """
-    Returns whether two rays intersect.
-    """
+    
     det = det(ray1.vec, ray2.vec)
     
     if det == 0: # parallel
@@ -88,9 +82,7 @@ def ray_intersect_ray(ray1, ray2):
         return 0 < k1 and 0 < k2
 
 def line_intersect_segment(line, segment):
-    """
-    Returns whether a line and a segment intersect.
-    """
+    
     det = det(line.vec, segment.vec)
         
     if det == 0:
@@ -102,9 +94,7 @@ def line_intersect_segment(line, segment):
         return 0 <= k <= 1
 
 def line_intersect_ray(line, ray):
-    """
-    Returns whether a line and a ray intersect.
-    """
+    
     det = det(line.vec, ray.vec)
         
     if det == 0:
@@ -116,15 +106,10 @@ def line_intersect_ray(line, ray):
         return 0 < k
 
 def line_intersect_line(line1, line2):
-    """
-    Returns whether two lines intersect.
-    """
     return det(line1.vec, line2.vec) != 0 or line2.a in line1
 
 def circle_intersect_segment(circle, segment):
-    """
-    Returns whether a circle and a segment intersect.
-    """
+    
     if segment.a in circle and segment.b in circle:
         return False
     
@@ -136,9 +121,7 @@ def circle_intersect_segment(circle, segment):
     return d <= circle.radius
 
 def circle_intersect_ray(circle, ray):
-    """
-    Returns whether a circle and a ray intersect.
-    """
+    
     u = Vector(circle.center - ray.a)
     u1 = u.project_on(ray.vec)
     u2 = u - u1
@@ -146,10 +129,7 @@ def circle_intersect_ray(circle, ray):
     return u2.lenght <= circle.radius
 
 def circle_intersect_line(circle, line):
-    """
-    Returns whether a circle and a line intersect.
-    """
-    
+        
     dx = line.b.x - line.a.x
     dy = line.b.y - line.a.y
     dr_2 = dx**2 + dy**2
@@ -159,16 +139,11 @@ def circle_intersect_line(circle, line):
     return dis >= 0
 
 def circle_intersect_circle(circle1, circle2):
-    """
-    Returns whether two circles intersect.
-    """
     return circle1.center.distance(circle2.center) <= circle1.radius + circle2.radius
 
 # get number of intersections
 def count_cicle_inter_segment(circle, segment):
-    """
-    Returns the number of intersections between a circle and a segment.
-    """
+    
     if segment.a in circle and segment.b in circle:
         return Decimal(0)
     
@@ -189,10 +164,7 @@ def count_cicle_inter_segment(circle, segment):
         return Decimal(0)
 
 def count_cicle_inter_ray(circle, ray):
-    """
-    Returns the number of intersections between a circle and a ray.
-    """
-    
+        
     if ray.a in circle:
         return Decimal(1)
     else:
@@ -209,9 +181,7 @@ def count_cicle_inter_ray(circle, ray):
             return Decimal(0)
 
 def count_cicle_inter_line(circle, line):
-    """
-    Returns the number of intersections between a circle and a line.
-    """
+    
     dx = line.b.x - line.a.x
     dy = line.b.y - line.a.y
     dr_2 = dx**2 + dy**2
@@ -226,10 +196,9 @@ def count_cicle_inter_line(circle, line):
         return Decimal(2)
 
 def count_cicle_inter_circle(circle1, circle2):
-    """
-    Returns the number of intersections between two cricles.
-    """
+    
     d = circle1.center.distance(circle2.center)
+    
     if d > circle1.radius + circle2.radius:
         return Decimal(0)
     if d == circle1.radius + circle2.radius:
@@ -241,9 +210,7 @@ def count_cicle_inter_circle(circle1, circle2):
 
 # get intersection
 def get_segment_inter_segment(segment1, segment2):
-    """
-    Returns the intersection of two segments.
-    """
+    
     det = det(segment1.vec, segment2.vec)
         
     if det == 0:
@@ -290,9 +257,7 @@ def get_segment_inter_segment(segment1, segment2):
             return None
 
 def get_ray_inter_segment(ray, segment):
-    """
-    Returns the intersection of a ray and a segment.
-    """
+    
     det = det(ray.vec, segment.vec)
         
     if det == 0:
@@ -339,9 +304,7 @@ def get_ray_inter_segment(ray, segment):
             return None
 
 def get_ray_inter_ray(ray1, ray2):
-    """
-    Returns the intersection of two rays.
-    """
+    
     det = det(ray1.vec, ray2.vec)
         
     if det == 0:
@@ -364,9 +327,7 @@ def get_ray_inter_ray(ray1, ray2):
             return None
 
 def get_line_inter_segment(line, segment):
-    """
-    Returns the intersection of a line and a segment.
-    """
+    
     det = det(line.vec, segment.vec)
         
     if det == 0:
@@ -386,9 +347,7 @@ def get_line_inter_segment(line, segment):
             return None
 
 def get_line_inter_ray(line, ray):
-    """
-    Returns the intersection of a line and a ray.
-    """
+    
     det = det(line.vec, ray.vec)
         
     if det == 0:
@@ -408,9 +367,7 @@ def get_line_inter_ray(line, ray):
             return None
 
 def get_line_inter_line(line1, line2):
-    """
-    Returns the intersection of two lines.
-    """
+    
     det = det(line1.vec, line2.vec)
         
     if det != 0:
@@ -423,9 +380,7 @@ def get_line_inter_line(line1, line2):
         return None
 
 def get_circle_inter_segment(circle, segment):
-    """
-    Returns the intersection of a circle and a segment.
-    """
+    
     if segment.a in circle and segment.b in circle:
         return None
     
@@ -454,9 +409,7 @@ def get_circle_inter_segment(circle, segment):
         return None
 
 def get_circle_inter_ray(circle, ray):
-    """
-    Returns the intersection of a circle and a ray.
-    """ 
+    
     u = Vector(circle.center - ray.a)
     u1 = u.project_on(ray.vec)
     u2 = u - u1
@@ -479,9 +432,7 @@ def get_circle_inter_ray(circle, ray):
         return None
 
 def get_circle_inter_line(circle, line):
-    """
-    Returns the intersection of a circle and a line.
-    """
+    
     dx = line.b.x - line.a.x
     dy = line.b.y - line.a.y
     dr_2 = dx**2 + dy**2
@@ -511,9 +462,7 @@ def get_circle_inter_line(circle, line):
         return (p1, p2)
 
 def get_circle_inter_circle(circle1, circle2):
-    """
-    Returns the intersection of two circles.
-    """       
+          
     d = circle1.center.distance(circle2.center)
     
     if d == 0:

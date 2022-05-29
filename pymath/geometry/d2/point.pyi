@@ -24,7 +24,10 @@ class Point:
     
     def translate(self, vec: 'Vector') -> Self: ...
     
-    def rotate(self, center: 'Point', angle: Decimal) -> Self: ...
+    def rotate(self, center: 'Point', angle: Decimal) -> Self:
+        """
+        Rotates the point counterclockwise around 'center' by 'angle' radians.
+        """
     
     def copy(self) -> 'Point': ...
 

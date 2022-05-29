@@ -6,13 +6,7 @@ from pymath.geometry.d2.intersections import (get_segment_inter_segment,
 __all__ = ['Segment']
 
 class Segment(BaseLine):
-    
-    def __init__(self, a, b):
-        """
-        Represent the segment [A, B].
-        """
-        super().__init__(a, b)
-    
+        
     # attrs
     @property
     def length(self):

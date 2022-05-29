@@ -5,10 +5,10 @@ from pymath.geometry.d2.intersections import (circle_intersect_circle,
                                               circle_intersect_line,
                                               circle_intersect_ray,
                                               circle_intersect_segment,
-                                              count_cicle_inter_segment,
-                                              count_cicle_inter_ray,
-                                              count_cicle_inter_line,
                                               count_cicle_inter_circle,
+                                              count_cicle_inter_line,
+                                              count_cicle_inter_ray,
+                                              count_cicle_inter_segment,
                                               get_circle_inter_circle,
                                               get_circle_inter_line,
                                               get_circle_inter_ray,
@@ -18,6 +18,8 @@ from pymath.geometry.d2.point import Point
 from pymath.geometry.d2.ray import Ray
 from pymath.geometry.d2.segment import Segment
 
+
+__all__ = ['Circle']
 
 class Circle:
     
@@ -79,7 +81,7 @@ class Circle:
             return other.get_intersection(self)
     
     def copy(self):
-        return Circle(self.center, self.radius)
+        return Circle(self.__center, self.__radius)
     
     # op
     def __contains__(self, other):
