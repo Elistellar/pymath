@@ -58,6 +58,9 @@ class Vector:
         Returns the projection of self onto other
         """
         return (self * other) / other.square_lenght * other
+    
+    def copy(self):
+        return Vector(self.__x, self.__y)
 
     # op
     def __add__(self, other):

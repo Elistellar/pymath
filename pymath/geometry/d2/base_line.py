@@ -37,3 +37,7 @@ class BaseLine:
             return self.a.y - slope * self.a.x
         else:
             return Decimal('NaN')
+        
+    # methods
+    def copy(self):
+        return self.__class__(self.a, self.b)

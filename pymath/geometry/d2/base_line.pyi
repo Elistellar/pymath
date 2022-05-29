@@ -22,3 +22,6 @@ class BaseLine:
     
     @property
     def intercept(self) -> Decimal: ...
+
+    # methods
+    def copy(self) -> 'BaseLine': ...

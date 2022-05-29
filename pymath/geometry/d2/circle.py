@@ -78,6 +78,9 @@ class Circle:
         else:
             return other.get_intersection(self)
     
+    def copy(self):
+        return Circle(self.center, self.radius)
+    
     # op
     def __contains__(self, other):
         if isinstance(other, Point):
