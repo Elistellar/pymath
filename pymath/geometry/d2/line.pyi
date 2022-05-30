@@ -1,8 +1,10 @@
-from typing import overload
+from typing import Self, Tuple, overload
 
 from pymath.geometry.d2.base_line import BaseLine
+from pymath.geometry.d2.circle import Circle
 from pymath.geometry.d2.point import Point
 from pymath.geometry.d2.ray import Ray
+from pymath.geometry.d2.rect import Rect
 from pymath.geometry.d2.segment import Segment
 from pymath.geometry.d2.vector import Vector
 
@@ -15,7 +17,7 @@ class Line(BaseLine):
         """
     
     # methods
-    def intersect(self, other: 'Segment' | 'Line') -> bool:
+    def intersect(self, other: 'Segment' | 'Ray' | 'Line' | 'Circle' | 'Rect') -> bool:
         """
         Returns weather the line intersects with the other object.
         """
@@ -37,8 +39,20 @@ class Line(BaseLine):
         """
         Returns the intersection with the other object.
         """
+        
+    @overload
+    def get_intersection(self, other: 'Circle') -> None | 'Point' | Tuple['Point', 'Point']:
+        """
+        Returns the intersection with the other object.
+        """
+        
+    @overload
+    def get_intersection(self, other: 'Rect') -> None | 'Point' | Tuple['Point', 'Point'] | 'Segment':
+        """
+        Returns the intersection with the other object.
+        """
     
-    def translate(self, vec: 'Vector') -> 'Line': ...
+    def translate(self, vec: 'Vector') -> Self: ...
     
     def copy(self) -> 'Line': ...
     

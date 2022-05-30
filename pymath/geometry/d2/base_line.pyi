@@ -1,4 +1,5 @@
 from decimal import Decimal
+from typing import Self
 
 from pymath.geometry.d2.point import Point
 from pymath.geometry.d2.vector import Vector
@@ -27,6 +28,6 @@ class BaseLine:
     def intercept(self) -> Decimal: ...
 
     # methods
-    def translate(self, vec: 'Vector') -> 'BaseLine': ...
+    def translate(self, vec: 'Vector') -> Self: ...
     
     def copy(self) -> 'BaseLine': ...

@@ -1,6 +1,7 @@
 from pymath.geometry.d2.base_line import BaseLine
 from pymath.geometry.d2.intersections import (get_segment_inter_segment,
                                               segment_intersect_segment)
+from pymath.geometry.d2.point import Point
 
 
 __all__ = ['Segment']
@@ -15,6 +16,10 @@ class Segment(BaseLine):
     @property
     def square_lenght(self):
         return self.a.square_distance(self.b)
+    
+    @property
+    def middle(self):
+        return Point((self.a.x + self.b.x) / 2, (self.a.y + self.b.y) / 2)
     
     # methods
     def intersect(self, other):

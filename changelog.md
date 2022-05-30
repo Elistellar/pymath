@@ -21,6 +21,7 @@
 - properties:
     - lenght
     - square_lenght
+    - middle
 - methods:
     - translate
     - copy
@@ -42,11 +43,31 @@
     - intersect
     - count_intersections
     - get_intersection
+    - translate
+    - copy
+    - \_\_contains__
+    - \_\_eq__
+
+#### Rect class _(new)_:
+- properties:
+    - topleft
+    - topright
+    - bottomright
+    - bottomleft
+    - width
+    - height
+    - area
+    - center
+- methods:
+    - intersect
+    - count_intersections
+    - get_intersection
+    - translate
+    - rotate
     - copy
     - \_\_contains__
     - \_\_eq__
 
 ## Comming soon
-- rotate method on Segment, Line
-- Rectangle, Polygon, Ellipse
+- Polygon, Ellipse
 - all maths demos

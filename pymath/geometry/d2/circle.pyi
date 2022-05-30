@@ -1,10 +1,12 @@
 from decimal import Decimal
-from typing import Tuple, overload
+from typing import List, Self, Tuple, overload
 
 from pymath.geometry.d2.line import Line
 from pymath.geometry.d2.point import Point
 from pymath.geometry.d2.ray import Ray
+from pymath.geometry.d2.rect import Rect
 from pymath.geometry.d2.segment import Segment
+from pymath.geometry.d2.vector import Vector
 
 
 class Circle:
@@ -24,12 +26,12 @@ class Circle:
     def area(self) -> Decimal: ...
     
     # methods
-    def intersect(self, other: 'Segment' |'Ray' | 'Line' | 'Circle') -> bool:
+    def intersect(self, other: 'Segment' |'Ray' | 'Line' | 'Circle' | 'Rect') -> bool:
         """
         Returns weather the circle intersects with the other object.
         """
         
-    def count_intersections(self, other: 'Segment' |'Ray' | 'Line' | 'Circle') -> Decimal:
+    def count_intersections(self, other: 'Segment' |'Ray' | 'Line' | 'Circle' | 'Rect') -> Decimal:
         """
         Returns the number of intersections with the other object.
         """      
@@ -45,10 +47,18 @@ class Circle:
         """
         Returns all intersections with the other object.
         """
+        
+    @overload
+    def get_intersection(self, other: 'Rect') -> None | List['Point']:
+        """
+        Returns all intersections with the other object.
+        """
+    
+    def translate(self, vec: 'Vector') -> Self: ...
     
     def copy(self) -> 'Circle': ...
     
     # op
-    def __contains__(self, other: 'Point' | 'Segment' | 'Circle') -> bool: ...
+    def __contains__(self, other: 'Point' | 'Segment' | 'Circle' | 'Rect') -> bool: ...
                
     def __eq__(self, other: 'Circle') -> bool: ...

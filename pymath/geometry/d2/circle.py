@@ -80,6 +80,10 @@ class Circle:
         else:
             return other.get_intersection(self)
     
+    def translate(self, vec):
+        self.__radius.translate(vec)
+        return self
+    
     def copy(self):
         return Circle(self.__center, self.__radius)
     
@@ -92,6 +96,8 @@ class Circle:
                and self.__center.distance(other.b) <= self.__radius
         elif isinstance(other, Circle):
             return self.__center.distance(other.__center) + other.__radius <= self.__radius
+        else: # Rect
+            raise NotImplementedError()
                
     def __eq__(self, other):
         return self.__center == other.__center and self.__radius == other.__radius

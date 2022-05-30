@@ -16,12 +16,22 @@ __all__ = [
     'circle_intersect_ray',
     'circle_intersect_line',
     'circle_intersect_circle',
+    'rect_intersect_segment',
+    'rect_intersect_ray',
+    'rect_intersect_line',
+    'rect_intersect_circle',
+    'rect_intersect_rect',
     
     # get number of intersections
     'count_cicle_inter_segment',
     'count_cicle_inter_ray',
     'count_cicle_inter_line',
     'count_cicle_inter_circle',
+    'count_rect_inter_segment',
+    'count_rect_inter_ray',
+    'count_rect_inter_line',
+    'count_rect_inter_circle',
+    'count_rect_inter_rect',
     
     # get intersection
     'get_segment_inter_segment',
@@ -34,6 +44,11 @@ __all__ = [
     'get_circle_inter_ray',
     'get_circle_inter_line',
     'get_circle_inter_circle',
+    'get_rect_inter_segment',
+    'get_rect_inter_ray',
+    'get_rect_inter_line',
+    'get_rect_inter_circle',
+    'get_rect_inter_rect',
 ]
 
 def sgn(d):
@@ -141,6 +156,22 @@ def circle_intersect_line(circle, line):
 def circle_intersect_circle(circle1, circle2):
     return circle1.center.distance(circle2.center) <= circle1.radius + circle2.radius
 
+def rect_intersect_segment(rect, segment):
+    raise NotImplementedError()
+
+def rect_intersect_ray(rect, ray):
+    raise NotImplementedError()
+
+def rect_intersect_line(rect, line):
+    raise NotImplementedError()
+
+def rect_intersect_circle(rect, circle):
+    raise NotImplementedError()
+
+def rect_intersect_rect(rect1, rect2):
+    raise NotImplementedError()
+
+
 # get number of intersections
 def count_cicle_inter_segment(circle, segment):
     
@@ -207,6 +238,22 @@ def count_cicle_inter_circle(circle1, circle2):
         return Decimal('+Infinity')
     else:
         return Decimal(2)
+
+def count_rect_inter_segment(rect, segment):
+    raise NotImplementedError()
+
+def count_rect_inter_ray(rect, ray):
+    raise NotImplementedError()
+
+def count_rect_inter_line(rect, line):
+    raise NotImplementedError()
+
+def count_rect_inter_circle(rect, circle):
+    raise NotImplementedError()
+
+def count_rect_inter_rect(rect1, rect2):
+    raise NotImplementedError()
+
 
 # get intersection
 def get_segment_inter_segment(segment1, segment2):
@@ -495,3 +542,18 @@ def get_circle_inter_circle(circle1, circle2):
             p2.rotate(circle1.center, a)
             
             return (p1, p2)
+
+def get_rect_inter_segment(rect, segment):
+    raise NotImplementedError()
+
+def get_rect_inter_ray(rect, ray):
+    raise NotImplementedError()
+
+def get_rect_inter_line(rect, line):
+    raise NotImplementedError()
+
+def get_rect_inter_circle(rect, circle):
+    raise NotImplementedError()
+
+def get_rect_inter_rect(rect1, rect2):
+    raise NotImplementedError()
